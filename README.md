@@ -53,6 +53,18 @@ newton x xys = helper 0 0 1 xys  -- Start recursion with initial values
              (prod * (x - fst xy')) xys'
 
 ```
+### Подсчет разниц
+```haskell
+-- Divided difference function used for Newton interpolation
+-- It calculates the value of the divided difference for a given degree of interpolation.
+dividedDifference :: Int -> Int -> [(Double, Double)] -> Double
+dividedDifference 0 ind xys = snd $ xys !! ind  -- Base case: for degree 0, return the y-value at index `ind`
+dividedDifference degree ind xys =
+  -- Recursively calculate the divided difference using the formula:
+  -- (f[x0, x1, ..., xk] = (f[x1, ..., xk] - f[x0, ..., xk-1]) / (xk - x0))
+  (dividedDifference (degree - 1) (ind + 1) xys - dividedDifference (degree - 1) ind xys)
+    / (fst (xys !! (ind + degree)) - fst (xys !! ind))  -- The denominator is the difference in x-values
+```
 ### Работа с вводом и выводом
  Модуль для работы с аргументами командной строки - Options.Applicative
 ### Создание парсеров 
