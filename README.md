@@ -120,3 +120,16 @@ main = execParser opts >>= runWithOptions -- Parse options and call runWithOptio
             <> header "Linear interpolation"
         )
 ```
+```
+PS C:\Users\danil_emelin1\haskell-lab3\Haskell-lab3> cabal run Haskell-lab3 -- --step 1 --window 3 --method lagrange
+Step: 1.0
+Window: 3
+Method: ["lagrange"]
+1;3
+2;3
+5;1
+(2.0,4.0) 
+Interpolating with: lagrange
+(1.0,3.0)
+(1.0,3.0)
+```
