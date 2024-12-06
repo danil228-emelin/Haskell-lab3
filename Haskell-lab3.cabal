@@ -68,7 +68,7 @@ executable Haskell-lab3
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:    base ^>=4.17.2.1, split>=0.2.5, optparse-applicative>=0.18.1.0
+    build-depends:    base>=4.17.2.1, split>=0.2.5, optparse-applicative>=0.18.1.0
 
     -- Directories containing source files.
     hs-source-dirs:   app
