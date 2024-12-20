@@ -46,3 +46,7 @@ dividedDifference degree ind xys =
   -- (f[x0, x1, ..., xk] = (f[x1, ..., xk] - f[x0, ..., xk-1]) / (xk - x0))
   (dividedDifference (degree - 1) (ind + 1) xys - dividedDifference (degree - 1) ind xys)
     / (fst (xys !! (ind + degree)) - fst (xys !! ind))  -- The denominator is the difference in x-values
+
+
+linearInterpolation :: (Fractional a) => a -> a -> a -> a -> a->a
+linearInterpolation x0 y0 x1 y1 x = y0 + (x - x0) * (y1 - y0) / (x1 - x0)
