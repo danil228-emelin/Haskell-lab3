@@ -147,5 +147,4 @@ cliRoutine step' window' methods = do
 interpolateInInterval_ :: [(Double, Double)] -> Double -> Double -> Double -> String -> IO ()
 interpolateInInterval_ vals fromX toX freq ipol = do
   let pts = [fromX, (fromX + freq) .. toX] -- Generate points in the interval
-  putStrLn ("Interpolating with: " ++ ipol) -- Print the interpolation method
   mapM_ print (interpolatorFromName ipol pts vals) -- Perform interpolation and print results
