@@ -194,36 +194,36 @@ readPoints = do
     Nothing -> return []    
 ```
 ### Вывод программы
-```
-./Haskell-lab3.exe --step=0.5 --window=3 --method=newton
-Step: 0.5
-Window: 3
-Method: ["newton"]
-1;2
-2;3
-3;5
-CTRL+D
-Interpolating with: newton
-(1;2)
-(1.5,2.75)
-(2;3)
-(2.5,4.25)
-(3,5)
-```
 
 ```
-./Haskell-lab3.exe --step=0.5 --window=3 --method=lagrange
+$ cabal run Haskell-lab3 -- --step=0.5 --window=3 --method=lagrange
 Step: 0.5
 Window: 3
 Method: ["lagrange"]
-1;2
-2;3
-3;5
+1;1
+2;4
+3;9
 CTRL+D
-Interpolating with: lagrange
-(1;2)
-(1.5,2.37)
-(2;3)
-(2.5,3.87)
-(3,5)
+[(1.0,1.0),(1.5,2.25),(2.0,4.0),(2.5,6.25),(3.0,9.0)]
+```
+```
+$ cabal run Haskell-lab3 -- --step=0.5 --window=4 --method=newton
+Step: 0.5
+Window: 4
+Method: ["newton"]
+1;1
+2;4
+3;9
+4;16
+[(1.0,1.0),(1.5,2.25),(2.0,4.0),(2.5,6.25),(3.0,9.0),(3.5,12.25),(4.0,16.0)]
+```
+
+```
+$ cabal run Haskell-lab3 -- --step=0.5 --window=4 --method=fsafsaf
+Step: 0.5
+Window: 4
+Method: ["fsafsaf"]
+Haskell-lab3: Bad method
+CallStack (from HasCallStack):
+  error, called at app\Main.hs:111:10 in main:Main
 ```

@@ -5,6 +5,8 @@ import Interpolation (lagrangeList, newtonList)
 import Options.Applicative
 import System.IO
 import Text.Read (readMaybe)
+import Control.Monad (forM_, forM)
+import Prelude
 
 ---- options and parsing ----
 
@@ -77,7 +79,7 @@ main = execParser opts >>= runWithOptions
       info
         (optionsParser <**> helper)
         ( fullDesc
-            <> progDesc "Linear interpolation. Functional programming 2023."
+            <> progDesc "Linear interpolation."
             <> header "Linear interpolation"
         )
 
@@ -114,20 +116,9 @@ cliRoutine step' window' methods = do
   points <- readPoints
   let pts = take window' points
   mapM_ (interpolateInInterval_ pts (fst $ head pts) (fst $ pts !! (window' - 1)) step') methods
-  start points
-  where
-    start points' = do
-      let pts = take window' points'
-      if length pts < window'
-        then do
-          mapM_ (interpolateInInterval_ pts (fst $ head pts) (fst $ last pts) step') methods
-        else do
-          let middleX = (fst (head pts) + fst (pts !! (window' - 1))) / 2
-          mapM_ (interpolateInInterval_ pts middleX middleX 1) methods
-          start (tail points')
 
 interpolateInInterval_ :: [(Double, Double)] -> Double -> Double -> Double -> String -> IO ()
 interpolateInInterval_ vals fromX toX freq ipol = do
   let pts = [fromX, (fromX + freq) .. toX]
-  putStrLn ("Interpolating with: " ++ ipol)
-  mapM_ print (interpolatorFromName ipol pts vals)
+  let a = interpolatorFromName ipol pts vals
+  print a
