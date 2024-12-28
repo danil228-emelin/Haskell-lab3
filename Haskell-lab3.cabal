@@ -85,3 +85,14 @@ executable Haskell-lab3
 
     -- Base language which the package is written in.
     default-language: Haskell2010
+
+
+test-suite HUnit-test
+  type: exitcode-stdio-1.0
+  main-is: Test.hs
+  other-modules:Interpolation
+  autogen-modules:
+  hs-source-dirs:test,src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
+  build-depends: HUnit, base >=4.7 && <5
+  default-language: Haskell2010
